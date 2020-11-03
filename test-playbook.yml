@@ -1,6 +1,6 @@
 ---
 - name: Testing
-  hosts: checkpoint
+  hosts: all
   connection: httpapi
   tasks:
     - name: show tasks
