@@ -1,0 +1,10 @@
+---
+- name: Testing
+  hosts: checkpoint
+  connection: httpapi
+  tasks:
+    - name: show tasks
+      cp_mgmt_show_tasks:
+        from_date: "2020-11-03T08:00:00"
+        initiator: admin
+        status: successful
