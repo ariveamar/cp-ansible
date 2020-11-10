@@ -1,15 +1,14 @@
----
----
-- name: playbook name
-  hosts: all
-  connection: httpapi
-  tasks:
-    - name: task to have network
-      check_point.mgmt.cp_mgmt_network:
-        name: "testing_network name"
-        subnet: "4.1.76.0"
-        mask_length: 24
-        auto_publish_session: true
-
-      vars:
-        ansible_checkpoint_domain: "SMC User"
+--- 
+connection: httpapi
+hosts: all
+name: "playbook name"
+tasks: 
+  - 
+    check_point.mgmt.cp_mgmt_network: 
+      auto_publish_session: true
+      mask_length: 24
+      name: "testing_network name"
+      subnet: "4.1.76.0"
+    name: "task to have network"
+    vars: 
+      ansible_checkpoint_domain: "SMC User"
