@@ -2,6 +2,7 @@
 - name: playbook name
   hosts: all
   connection: httpapi
+  collections: check_point.mgmt
   tasks:
     - name: task to have network
       check_point.mgmt.cp_mgmt_network:
