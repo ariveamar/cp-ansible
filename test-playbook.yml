@@ -1,10 +1,15 @@
 ---
-- name: Testing
+---
+- name: playbook name
   hosts: all
   connection: httpapi
   tasks:
-    - name: show tasks
-      cp_mgmt_show_tasks:
-        from_date: "2020-11-03T08:00:00"
-        initiator: admin
-        status: successful
+    - name: task to have network
+      check_point.mgmt.cp_mgmt_network:
+        name: "network name"
+        subnet: "4.1.76.0"
+        mask_length: 24
+        auto_publish_session: true
+
+      vars:
+        ansible_checkpoint_domain: "SMC User"
