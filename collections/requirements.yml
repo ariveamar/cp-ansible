@@ -1,3 +1,0 @@
-collections:
-    - name: ansible.tower
-    - name: check_point.mgmt
