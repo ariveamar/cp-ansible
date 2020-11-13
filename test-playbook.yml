@@ -1,6 +1,6 @@
 ---
 - name: Block IP Attacker
-  hosts: check_point
+  hosts: all
   connection: httpapi
   tasks:
     - name: Register IP Attacker
