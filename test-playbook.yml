@@ -1,15 +1,25 @@
 ---
-- name: playbook name
-  hosts: all
+- name: Block IP Attacker
+  hosts: check_point
   connection: httpapi
-  collections: check_point.mgmt
   tasks:
-    - name: task to have network
-      check_point.mgmt.cp_mgmt_network:
-        name: "network name"
-        subnet: "4.1.76.0"
-        mask_length: 24
+    - name: Register IP Attacker
+      cp_mgmt_host:
+        name: "zimbra_attacker"
+        ip_address: "10.8.230.110"
+        state: present
         auto_publish_session: true
 
-      vars:
-        ansible_checkpoint_domain: "SMC User"
+    - name: Create blacklist entry
+      checkpoint_access_rule:
+        auto_install_policy: yes
+        auto_publish_session: yes
+        layer: Network
+        position: top
+        name: "blacklist_policy"
+        source: "zimbra_attacker"
+        destination: "IP_Ext_Zimbra_10.8.150.64"
+        action: drop
+
+    - name: publish
+      cp_mgmt_publish:
