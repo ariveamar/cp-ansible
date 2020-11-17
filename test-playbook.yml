@@ -20,6 +20,9 @@
         source: "zimbra_attacker"
         destination: "IP_Ext_Zimbra_10.8.150.64"
         action: drop
-
-    - name: publish
-      cp_mgmt_publish:
+    - name: install-policy
+      cp_mgmt_install_policy:
+        access: true
+        policy_package: standard
+        targets:
+        - gw-ngfw1
